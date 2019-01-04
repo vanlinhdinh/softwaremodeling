@@ -1,0 +1,7 @@
+module.exports = {
+	PRODUCTS_PER_PAGE: 4,
+	ORDER_ON_HOLD: 1,
+	ORDER_COMPLETED: 2,
+	ORDER_CANCEL: 3,
+	BLOG_PER_PAGE: 4
+}

@@ -1,0 +1,16 @@
+{{#section 'title'}}
+	Xóa danh mục
+{{/section}}
+{{#with Category}}
+<form action="" method="POST" role="form">
+	<p>Tên danh mục: {{Name}}</p>
+	<p>Mô tả: {{Discription}}</p>
+	<input type="text" id="" name="categoryID" value="{{ID}}" readonly="">	
+	<a></a>
+	
+	<button type="submit" class="btn btn-danger">
+		<span class="glyphicon glyphicon-remove"></span>
+		Xóa danh mục
+	</button>
+</form>
+{{/with}}

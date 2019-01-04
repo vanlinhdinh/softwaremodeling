@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{{_sections.title}}}</title>
+    <meta name="google-site-verification" content="6V8-lG3qAUh9innt10E1dVesW8ubCniB-P114ERrdVQ" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/make-up.png" />
+    <link rel="stylesheet" type="text/css" href="/css/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/owlcarousel/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="/asset/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/FontAwesome/css/fontawesome-all.css" />
+    <link rel="stylesheet" type="text/css" href="/css/Site.css"> {{{_sections.css}}}
+    <script src="/Script/jquery-3.3.1.min.js"></script>
+    <script src="/Script/bootstrap.js"></script>
+</head>
+
+<body>
+    <form style="display:none;" id="frmLogout" method="post" action="/account/logout"></form>
+    <form style="display:none;" id="formAddCart"method="POST" action="/cart/add">
+        <input name="productID" id="addCartItem" type="hidden"/>
+        <input name="quantity" value="1" type="hidden"/>
+    </form>
+    <div class="opacity-background">
+        <div id="dm-header" class="d-flex justify-content-between">
+            <p class="p-2">
+            </p>
+            <p class="p-2">
+
+                {{#if layoutVM.isLogged}} Xin chào,
+                <a class="color-purple" href="/account/profile">{{layoutVM.currentUser.FullName}}</a>
+                <a id="lnkLogout" href="javascript:;">Đăng xuất</a>
+                {{else}}
+                <a href="/account/login">Đăng nhập</a>
+                <a href="/account/register">Đăng ký</a>
+                {{/if}}
+                | <a href="/home/search">Tìm kiếm</a>
+            </p>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light shift">
+            <a class="navbar-brand" href="#">
+                <img src="/Content/image/Index/header-logo.png" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="">
+                    <i class="fa fa-bars"></i>
+                </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog">Blog</a>
+                    </li>
+                    <li class="nav-item dropdown" id="categoryDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Danh Mục
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {{#each layoutVM.categories}}
+                            {{#if Status}}
+                            <a class="dropdown-item" href="/home/category/{{ID}}">{{Name}}</a>
+                            {{/if}}
+                            {{/each}}
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown" id="ProducerDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="proDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Nhà sản xuất
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="proDropdown">
+                            {{#each layoutVM.listProducer}}
+                            {{#if Status}}
+                            <a class="dropdown-item" href="/home/producer/{{ID}}">{{Name}}</a>
+                            {{/if}}
+                            {{/each}}
+                        </div>
+                    </li>
+                    {{#if layoutVM.isLogged}}
+                    <li id="cartIcon" class="text-center">
+                        <a href="/cart" class="color-purple">
+                            &nbsp;
+                            <i class="fa fa fa-shopping-cart color-purple"></i> Giỏ hàng 
+                            <sup>{{layoutVM.CartLength}}</sup>
+                            &nbsp;
+                        </a>
+                    </li>
+                    {{/if}}
+                </ul>
+            </div>
+        </nav>
+        <div class="ontainer-fluid body-content">
+            <div class="modal fade" id="LargeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Thông báo</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{{body}}}
+            <footer>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h6>
+                            <strong class="text-uppercase">Chính sách hổ trợ</strong>
+                        </h6>
+                        <p>Giới thiệu</p>
+                        <p>Liên hệ</p>
+                        <p>Chính sách giao hàng</p>
+                        <p>Hình thức thanh toán</p>
+                        <p>Thiết kế bởi...</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <h6>
+                            <strong class="text-uppercase">Liên hệ</strong>
+                        </h6>
+                        <p>
+                            <i class="fa fa-address-card"></i> CS1: 24 Tân Lập, Đông Hòa, Dĩ An, Bình Dương</p>
+                        <p>
+                            <i class="fa fa-address-card"></i> CS2 : 38 Kim Đồng, Phường An Lạc, Thị xã Buôn Hồ, Tỉnh Đaklak</p>
+                        <p>
+                            <i class="fa fa-phone"></i> 01677 685 225</p>
+                        <p>
+                            <i class="fa fa-envelope-square"></i> duyenmyduyenmy@gmail.com</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <h6>
+                            <strong class="text-uppercase">Liên kết</strong>
+                        </h6>
+                        <p>
+                            <a href="https://www.facebook.com/duyen.may.16">Facebook</a>
+                        </p>
+                        <p>
+                            <a href="https://www.facebook.com/duyen.may.16">Instagram</a>
+                        </p>
+                        <p>
+                            <a href="https://www.facebook.com/duyen.may.16">Switter</a>
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="/css/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/asset/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="/Script/DefaultScript.js"></script> {{{_sections.js}}}
+    <script>
+        $('#lnkLogout').on('click', function () {
+            $('#frmLogout').submit();
+        });
+    </script>
+</body>
+
+</html>
